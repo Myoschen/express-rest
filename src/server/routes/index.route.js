@@ -2,8 +2,11 @@
 import express from 'express';
 import { Pool } from 'pg';
 import config from '../../config/config';
+import article from './article.route';
 
 const router = express.Router();
+
+router.use('/article', article);
 
 router.get('/', (req, res) => {
   res.send(`此路徑是: localhost:${config.port}/api`);

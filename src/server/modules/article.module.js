@@ -1,18 +1,6 @@
 /* eslint-disable camelcase */
 // 與資料庫溝通的地方
-import { Pool } from 'pg';
-import config from '../../config/config';
-
-const pool = new Pool({
-  host: config.postgresHost,
-  user: config.postgresUser,
-  password: config.postgresPassword,
-  database: config.postgresDatabase,
-  port: config.postgresPort,
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
-});
+import pool from './index.module';
 
 // 新增文章
 const createArticle = (data) => new Promise((resolve, reject) => {
@@ -31,10 +19,12 @@ const createArticle = (data) => new Promise((resolve, reject) => {
         query,
         (sqlError, result) => {
           if (sqlError) {
-            console.log(`SQL Error: ${sqlError.message}`);
+            console.log(`[SQL Error] ${sqlError.message}`);
             reject(sqlError);
           } else if (result.rowCount > 0) {
-            resolve(`新增成功！ (article: ${data})`);
+            resolve('新增文章成功！');
+          } else {
+            resolve('新增文章失敗！');
           }
           release();
         },
@@ -54,7 +44,7 @@ const selectArticle = () => new Promise((resolve, reject) => {
       };
       client.query(query, (sqlError, result) => {
         if (sqlError) {
-          console.log(`SQL error: ${sqlError.message}`);
+          console.log(`[SQL Error] ${sqlError.message}`);
           reject(sqlError);
         } else if (result.rowCount > 0) {
           resolve(result.rows);
@@ -73,12 +63,12 @@ const updateArticle = (id, data) => new Promise((resolve, reject) => {
     } else {
       const { article_title, article_tag, article_content } = data;
       const query = {
-        text: 'UPDATE article SET article_title = $1, article_tag = $2, article_content = $3 WHERE article_id = $4',
+        text: 'UPDATE public.article SET article_title = $1, article_tag = $2, article_content = $3 WHERE article_id = $4',
         values: [article_title, article_tag, article_content, id],
       };
       client.query(query, (sqlError, result) => {
         if (sqlError) {
-          console.log(`SQL Error: ${sqlError}`);
+          console.log(`[SQL Error] ${sqlError}`);
           reject(sqlError);
         } else if (result.rowCount === 0) {
           resolve('請確認文章 ID!');
@@ -106,9 +96,9 @@ const deleteArticle = (id) => new Promise((resolve, reject) => {
           console.log(`SQL Error: ${sqlError.message}`);
           reject(sqlError);
         } else if (result.rowCount === 0) {
-          resolve(`刪除失敗! (article_id: ${id})`);
+          resolve(`刪除文章失敗! (article_id: ${id})`);
         } else {
-          resolve(`刪除成功! (article_id: ${id})`);
+          resolve(`刪除文章成功! (article_id: ${id})`);
         }
       });
       release();

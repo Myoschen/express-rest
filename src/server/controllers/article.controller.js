@@ -24,9 +24,9 @@ const articleGet = (req, res) => {
 };
 
 // 更新文章
-const articleUpdate = (req, res) => {
-  const id = req.params.article_id;
-  const data = req.body;
+const articlePut = (req, res) => {
+  const id = req.params.article_id; // 取得 URL 後方參數
+  const data = req.body; // 取得 Request Body 內容
   articleModule.updateArticle(id, data)
     .then((result) => {
       res.send(result);
@@ -49,5 +49,5 @@ const articleDelete = (req, res) => {
 };
 
 export default {
-  articlePost, articleGet, articleUpdate, articleDelete,
+  articlePost, articleGet, articlePut, articleDelete,
 };

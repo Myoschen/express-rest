@@ -14,12 +14,24 @@ npm ci
 
 ## Resource
 
-| Method     | URI                      |
-|------------|--------------------------|
-| **GET**    | /api/article             |
-| **POST**   | /api/article             |
-| **PUT**    | /api/article/:article_id |
-| **DELETE** | /api/article/:article_id |
+### Article
+
+| Method     | URI                       |
+|------------|---------------------------|
+| **GET**    | /api/articles             |
+| **POST**   | /api/articles             |
+| **PUT**    | /api/articles/:article_id |
+| **DELETE** | /api/articles/:article_id |
+
+### User
+
+| Method     | URI                 |
+|------------|---------------------|
+| **GET**    | /api/users          |
+| **POST**   | /api/users          |
+| **PUT**    | /api/users/:user_id |
+| **DELETE** | /api/users/:user_id |
+| **POST**   | /api/users/login    |
 
 ## Reference
 

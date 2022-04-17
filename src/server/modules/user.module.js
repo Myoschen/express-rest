@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import AppError from '../helper/AppError';
 import pool from './index.module';
 
@@ -121,8 +122,24 @@ const selectUserLogin = (data) => new Promise((resolve, reject) => {
         } else {
           const passwordFromDatabase = result.rows[0].user_password;
           const passwordFromRequest = data.user_password;
+          // 透過 bcryptjs 將資料庫中的密碼及請求中的密碼做比對
           bcrypt.compare(passwordFromRequest, passwordFromDatabase)
-            .then((res) => (res ? resolve('登入成功!') : reject(new AppError.WrongPasswordError())));
+            .then((res) => {
+              if (res) {
+                // 組成 JWT 的 payload
+                const payload = {
+                  user_id: result.rows[0].user_id,
+                  user_name: result.rows[0].user_name,
+                  user_password: result.rows[0].user_password,
+                };
+                // 透過 jsonwebtoken 套件產生 JWT 並回傳
+                const token = jwt.sign({ payload, exp: Math.floor(Date.now() / 1000) + (60 * 15) }, 'my_secret_key');
+                resolve({ code: 200, message: '登入成功', token });
+              } else {
+                // 使用自定義的密碼錯誤訊息
+                reject(new AppError.WrongPasswordError());
+              }
+            });
         }
       });
       release();

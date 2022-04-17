@@ -30,7 +30,10 @@ const userGet = (req, res) => {
 // 更新使用者
 const userPut = (req, res) => {
   const id = req.params.user_id;
-  const data = req.body;
+  const data = {
+    ...req.body,
+    user_password: bcrypt.hashSync(req.body.user_password, 10), // 將密碼加密
+  };
   userModule.updateUser(id, data)
     .then((result) => {
       res.send(result);
@@ -52,6 +55,7 @@ const userDelete = (req, res) => {
     });
 };
 
+// 使用者登入
 const userLogin = (req, res, next) => {
   const data = req.body;
   userModule.selectUserLogin(data)

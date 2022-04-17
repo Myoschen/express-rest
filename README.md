@@ -1,5 +1,7 @@
 # express-rest
 
+![heroku-badge](https://heroku-badge.herokuapp.com/?app=safe-garden-46978)
+
 > Build a Restful api from scratch with Express, PostgreSQL
 
 ## Usage

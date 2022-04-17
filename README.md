@@ -16,23 +16,23 @@ npm ci
 
 ### Article
 
-| Method     | URI                       |
-|------------|---------------------------|
-| **GET**    | /api/articles             |
-| **GET**    | /api/articles/personal    |
-| **POST**   | /api/articles             |
-| **PUT**    | /api/articles/:article_id |
-| **DELETE** | /api/articles/:article_id |
+| Method     | URI                       | Description            |
+|------------|---------------------------|------------------------|
+| **GET**    | /api/articles             | Get all articles       |
+| **GET**    | /api/articles/personal    | Get someone's articles |
+| **POST**   | /api/articles             | Add new article        |
+| **PUT**    | /api/articles/:article_id | Update article         |
+| **DELETE** | /api/articles/:article_id | Delete article         |
 
 ### User
 
-| Method     | URI                 |
-|------------|---------------------|
-| **GET**    | /api/users          |
-| **POST**   | /api/users          |
-| **PUT**    | /api/users/:user_id |
-| **DELETE** | /api/users/:user_id |
-| **POST**   | /api/users/login    |
+| Method     | URI                 | Description   |
+|------------|---------------------|---------------|
+| **GET**    | /api/users          | Get all users |
+| **POST**   | /api/users          | Add new user  |
+| **POST**   | /api/users/login    | User login    |
+| **PUT**    | /api/users/:user_id | Update user   |
+| **DELETE** | /api/users/:user_id | Delete user   |
 
 ## Reference
 

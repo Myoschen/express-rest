@@ -23,20 +23,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-  res.send(`Server started on port http://127.0.0.1:${config.port} (${config.env})`);
+  // res.send(`Server started on port http://127.0.0.1:${config.port} (${config.env})`);
+  res.send('<h1 style="text-align: center">Server started with Heroku !</h1>');
 });
 
 app.use('/api', index);
 
 // 驗證 Request Body 內容是否符合指定格式
-// eslint-disable-next-line no-unused-vars
-// app.use((err, req, res, next) => {
-//   if (err instanceof ValidationError) {
-//     return res.status(err.statusCode).json(err);
-//   }
-//   return res.status(500).json(err.stack);
-// });
-
 app.use((err, req, res, next) => {
   let errorMessage;
   let errorCode;
@@ -54,6 +47,7 @@ app.use((err, req, res, next) => {
   return next(err);
 });
 
+// 回傳自定義的錯誤訊息
 app.use((err, req, res, next) => {
   res.status(err.status).json({
     message: err.isPublic ? err.message : httpStatus[err.status],

@@ -14,6 +14,10 @@ npm ci
 
 ## Resource
 
+### Deploy with Heroku
+
+  Base URL: [https://safe-garden-46978.herokuapp.com/](https://safe-garden-46978.herokuapp.com/)
+
 ### Article
 
 | Method     | URI                       | Description            |

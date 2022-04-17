@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   // res.send(`Server started on port http://127.0.0.1:${config.port} (${config.env})`);
-  res.send('<h1 style="text-align: center">Server started with Heroku !</h1>');
+  res.send('<h1 style="text-align: center">Server started with Heroku !</h1> \n <a style="text-align:center; display:block;" href="/api">API HOMEPAGE</a>');
 });
 
 app.use('/api', index);

@@ -23,6 +23,15 @@ const articleGet = (req, res) => {
     });
 };
 
+// 取得使用者個人文章(需經 JWT 驗證)
+const articlePersonalGet = (req, res, next) => {
+  articleModule.selectPersonalArticle(req.token)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((error) => next(error));
+};
+
 // 更新文章
 const articlePut = (req, res) => {
   const id = req.params.article_id; // 取得 URL 後方參數
@@ -49,5 +58,5 @@ const articleDelete = (req, res) => {
 };
 
 export default {
-  articlePost, articleGet, articlePut, articleDelete,
+  articlePost, articleGet, articlePersonalGet, articlePut, articleDelete,
 };

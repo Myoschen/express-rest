@@ -1,5 +1,7 @@
 /* eslint-disable camelcase */
 // 與資料庫溝通的地方
+import jwt from 'jsonwebtoken';
+import AppError from '../helper/AppError';
 import pool from './index.module';
 
 // 新增文章
@@ -51,6 +53,39 @@ const selectArticle = () => new Promise((resolve, reject) => {
         }
       });
       release();
+    }
+  });
+});
+
+// 取得使用者個人文章(需經 JWT 驗證)
+const selectPersonalArticle = (token) => new Promise((resolve, reject) => {
+  // 驗證 JWT token
+  jwt.verify(token, 'my_secret_key', (error, payload) => {
+    if (error) {
+      reject(new AppError.TokenVerificationFailedError()); // Token 驗證失敗時
+    } else {
+      pool.connect((connectError, client, release) => {
+        if (connectError) {
+          reject(connectError);
+        } else {
+          const userId = payload.payload.user_id;
+          const query = {
+            text: 'SELECT * FROM public.article WHERE user_id = $1',
+            values: [userId],
+          };
+          client.query(query, (sqlError, result) => {
+            if (sqlError) {
+              console.log(`[SQL Error] ${sqlError.stack}`);
+              reject(sqlError);
+            } else if (result.rowCount === 0) {
+              resolve('尚未發表過任何文章!');
+            } else {
+              resolve(result.rows);
+            }
+          });
+          release();
+        }
+      });
     }
   });
 });
@@ -107,5 +142,5 @@ const deleteArticle = (id) => new Promise((resolve, reject) => {
 });
 
 export default {
-  createArticle, selectArticle, updateArticle, deleteArticle,
+  createArticle, selectArticle, selectPersonalArticle, updateArticle, deleteArticle,
 };

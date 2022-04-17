@@ -21,8 +21,7 @@ const createArticle = (data) => new Promise((resolve, reject) => {
         query,
         (sqlError, result) => {
           if (sqlError) {
-            console.log(`[SQL Error] ${sqlError.message}`);
-            reject(sqlError);
+            reject(new AppError.PostgreSQLError());
           } else if (result.rowCount > 0) {
             resolve('新增文章成功！');
           } else {
@@ -46,8 +45,7 @@ const selectArticle = () => new Promise((resolve, reject) => {
       };
       client.query(query, (sqlError, result) => {
         if (sqlError) {
-          console.log(`[SQL Error] ${sqlError.message}`);
-          reject(sqlError);
+          reject(new AppError.PostgreSQLError());
         } else if (result.rowCount > 0) {
           resolve(result.rows);
         }
@@ -75,8 +73,7 @@ const selectPersonalArticle = (token) => new Promise((resolve, reject) => {
           };
           client.query(query, (sqlError, result) => {
             if (sqlError) {
-              console.log(`[SQL Error] ${sqlError.stack}`);
-              reject(sqlError);
+              reject(new AppError.PostgreSQLError());
             } else if (result.rowCount === 0) {
               resolve('尚未發表過任何文章!');
             } else {
@@ -103,8 +100,7 @@ const updateArticle = (id, data) => new Promise((resolve, reject) => {
       };
       client.query(query, (sqlError, result) => {
         if (sqlError) {
-          console.log(`[SQL Error] ${sqlError}`);
-          reject(sqlError);
+          reject(new AppError.PostgreSQLError());
         } else if (result.rowCount === 0) {
           resolve('請確認文章 ID!');
         } else {
@@ -128,8 +124,7 @@ const deleteArticle = (id) => new Promise((resolve, reject) => {
       };
       client.query(query, (sqlError, result) => {
         if (sqlError) {
-          console.log(`SQL Error: ${sqlError.message}`);
-          reject(sqlError);
+          reject(new AppError.PostgreSQLError());
         } else if (result.rowCount === 0) {
           resolve(`刪除文章失敗! (article_id: ${id})`);
         } else {

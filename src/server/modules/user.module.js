@@ -17,8 +17,7 @@ const createUser = (data) => new Promise((resolve, reject) => {
       };
       client.query(query, (sqlError, result) => {
         if (sqlError) {
-          console.log(`[SQL Error] ${sqlError.message}`);
-          reject(sqlError);
+          reject(new AppError.PostgreSQLError());
         } else if (result.rowCount > 0) {
           resolve('新增使用者成功！');
         } else {
@@ -41,8 +40,7 @@ const selectUser = () => new Promise((resolve, reject) => {
       };
       client.query(query, (sqlError, result) => {
         if (sqlError) {
-          console.log(`[SQL Error] ${sqlError.message}`);
-          reject(sqlError);
+          reject(new AppError.PostgreSQLError());
         } else if (result.rowCount > 0) {
           resolve(result.rows);
         }
@@ -65,8 +63,7 @@ const updateUser = (id, data) => new Promise((resolve, reject) => {
       };
       client.query(query, (sqlError, result) => {
         if (sqlError) {
-          console.log(`[SQL Error] ${sqlError}`);
-          reject(sqlError);
+          reject(new AppError.PostgreSQLError());
         } else if (result.rowCount === 0) {
           resolve('請確認使用者 ID!');
         } else {
@@ -90,8 +87,7 @@ const deleteUser = (id) => new Promise((resolve, reject) => {
       };
       client.query(query, (sqlError, result) => {
         if (sqlError) {
-          console.log(`[SQL Error] ${sqlError.message}`);
-          reject(sqlError);
+          reject(new AppError.PostgreSQLError());
         } else if (result.rowCount === 0) {
           resolve(`刪除使用者失敗! (user_id: ${id})`);
         } else {
@@ -115,8 +111,7 @@ const selectUserLogin = (data) => new Promise((resolve, reject) => {
       };
       client.query(query, (sqlError, result) => {
         if (sqlError) {
-          console.log(`[SQL Error] ${sqlError.message}`);
-          reject(sqlError);
+          reject(new AppError.PostgreSQLError());
         } else if (result.rowCount === 0) {
           reject(new AppError.NotRegisteredMailError());
         } else {

@@ -19,6 +19,7 @@ npm ci
 | Method     | URI                       |
 |------------|---------------------------|
 | **GET**    | /api/articles             |
+| **GET**    | /api/articles/personal    |
 | **POST**   | /api/articles             |
 | **PUT**    | /api/articles/:article_id |
 | **DELETE** | /api/articles/:article_id |

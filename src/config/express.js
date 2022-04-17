@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import { ValidationError } from 'express-validation';
 import httpStatus from 'http-status';
 import config from './config';
-import APPError from '../server/helper/AppError';
+import AppError from '../server/helper/AppError';
 import index from '../server/routes/index.route';
 
 const app = express();
@@ -48,7 +48,7 @@ app.use((err, req, res, next) => {
       errorCode = 400;
       errorStatus = httpStatus.BAD_REQUEST;
     }
-    const error = new APPError.APIError(errorMessage, errorStatus, true, errorCode);
+    const error = new AppError.APIError(errorMessage, errorStatus, true, errorCode);
     return next(error);
   }
   return next(err);

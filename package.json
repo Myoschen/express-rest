@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "build:prod": "webpack --mode production",
-    "start": "nodemon dist/index.bundle.js",
+    "start": "node dist/index.bundle.js",
     "test": "mocha test/**/*.test.js"
   },
   "repository": {

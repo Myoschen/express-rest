@@ -1,10 +1,10 @@
 # express-rest
 
-![heroku-badge](https://heroku-badge.herokuapp.com/?app=safe-garden-46978)
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=safe-garden-46978&style=flat-square)
 
 > Build a Restful api from scratch with Express, PostgreSQL
 
-## Usage
+## Installation
 
 ```shell
 # Clone all project
@@ -14,7 +14,7 @@ git clone https://github.com/willy14620/express-rest.git
 npm ci
 ```
 
-## Resource
+## API Resource
 
 ### Deploy with Heroku
 

@@ -1,6 +1,7 @@
 # express-rest
 
 ![Heroku](https://pyheroku-badge.herokuapp.com/?app=safe-garden-46978&style=flat-square)
+![GitHub](https://img.shields.io/github/license/willy14620/express-rest?style=flat-square)
 
 > Build a Restful api from scratch with Express, PostgreSQL
 

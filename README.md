@@ -14,6 +14,24 @@ git clone https://github.com/willy14620/express-rest.git
 npm ci
 ```
 
+## Usage
+
+```shell
+# Bundle with webpack (development)
+npm run build
+
+# Bundle with webpack (production)
+npm run build:prod
+
+# Run on localhost
+npm run start
+
+# Unit test
+npm run test
+```
+
+> If you want to run it on your computer, you have to modify the database connection url (In [index.module.js](/src/server/modules/index.module.js) file).
+
 ## API Resource
 
 ### Deploy with Heroku

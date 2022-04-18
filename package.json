@@ -1,7 +1,7 @@
 {
   "name": "express-rest",
   "version": "1.0.0",
-  "description": "> Build a Restful api from scratch with Express, PostgreSQL",
+  "description": "Build a Restful API from scratch with Node.js, Express, PostgreSQL",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -14,8 +14,8 @@
     "url": "git+https://github.com/willy14620/express-rest.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "willy14620",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/willy14620/express-rest/issues"
   },

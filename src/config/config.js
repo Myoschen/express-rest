@@ -13,7 +13,7 @@ const schema = Joi.object().keys({
   POSTGRES_DATABASE: Joi.string(),
   POSTGRES_PASSWORD: Joi.string(),
   POSTGRES_PORT: Joi.number().default(5432),
-  POSTGRES_CONNECTION_URL: Joi.string(),
+  POSTGRES_CONNECTION_URI: Joi.string(),
 }).unknown().required();
 
 // 提取 .env 檔案內容並做驗證
@@ -33,7 +33,7 @@ const config = {
   postgresDatabase: env.POSTGRES_DATABASE, // 資料庫名稱
   postgresPassword: env.POSTGRES_PASSWORD, // 資料庫密碼
   postgresPort: env.POSTGRES_PORT, // 資料庫阜號
-  postgresConnectionURL: env.POSTGRES_CONNECTION_URL, // 資料庫 URL
+  postgresConnectionURI: env.POSTGRES_CONNECTION_URI, // 資料庫 URL
 };
 
 export default config;

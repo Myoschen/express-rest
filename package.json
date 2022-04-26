@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/willy14620/express-rest.git"
+    "url": "git+https://github.com/Myoschen/express-rest.git"
   },
   "keywords": [],
-  "author": "willy14620",
+  "author": "Myoschen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/willy14620/express-rest/issues"
+    "url": "https://github.com/Myoschen/express-rest/issues"
   },
-  "homepage": "https://github.com/willy14620/express-rest#readme",
+  "homepage": "https://github.com/Myoschen/express-rest#readme",
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/eslint-parser": "^7.17.0",

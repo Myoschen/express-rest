@@ -13,7 +13,7 @@ import config from '../../config/config';
 // });
 
 const pool = new Pool({
-  connectionString: config.postgresConnectionURL,
+  connectionString: config.postgresConnectionURI,
   ssl: {
     rejectUnauthorized: false,
   },

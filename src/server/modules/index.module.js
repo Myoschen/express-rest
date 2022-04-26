@@ -22,6 +22,4 @@ const pool = new Pool({
   connectionTimeoutMillis: 2000,
 });
 
-console.log(config);
-
 export default pool;
